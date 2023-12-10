@@ -11,13 +11,31 @@ import 'package:note_muse/view/widgets/custome_grid_builder.dart';
 import 'package:note_muse/view/widgets/image_builder.dart';
 
 @RoutePage()
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
   @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  TextEditingController controller = TextEditingController();
+  @override
   Widget build(BuildContext context) {
     showDialog() {
-      CustomDialog.show(context: context, widget: TextFieldBuilder());
+      CustomDialog.show(
+          context: context,
+          widget: TextFieldDialogBuilder(
+            controller: controller,
+            onApproveText: 'Proceed',
+            onCancelText: 'Cancel',
+            onApprove: () {
+              context.popRoute();
+              context.pushRoute(EditWorkspaceRoute(title: controller.text));
+              controller.clear();
+            },
+            onCancel: () =>context.popRoute(),
+          ));
     }
 
     return Scaffold(
@@ -37,8 +55,7 @@ class HomeView extends StatelessWidget {
                       5,
                       (index) => index == 0
                           ? CustomeCardTile(
-                              onTap: () =>
-                                  showDialog(),
+                              onTap: () => showDialog(),
                               title: 'Add new Workspace',
                               centerText: true,
                               imageWidget: SizedBox(

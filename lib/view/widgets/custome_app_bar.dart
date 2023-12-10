@@ -27,17 +27,17 @@ class CustomeAppBar extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 15),
       color: bgcolor,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Row(
               mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 back
                     ? IconButton(
                         onPressed: () => context.popRoute(),
-                        icon: const Icon(FontAwesomeIcons.arrowLeft,
+                        icon: const Icon(FontAwesomeIcons.angleLeft,
                             color: AppColors.light))
                     : const SizedBox(width: 0, height: 0),
                 back ? const SizedBox(width: 15) : const SizedBox(width: 0),
@@ -47,11 +47,6 @@ class CustomeAppBar extends StatelessWidget {
                       color: AppColors.light, style: AppTextStyle.big),
                 )
               ]),
-          subtitle != null
-              ? Text(subtitle!,
-                  style: AppTextStyle.withColor(
-                      color: AppColors.light, style: AppTextStyle.h4Bold))
-              : Container(),
         ],
       ),
     );

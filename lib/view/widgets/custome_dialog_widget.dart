@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:note_muse/view/common/app_colors.dart';
 import 'package:note_muse/view/common/app_text_style.dart';
 import 'package:note_muse/view/widgets/custome_button.dart';
+import 'package:note_muse/view/widgets/input_field.dart';
 
 class CustomDialog {
   static show({required BuildContext context, required Widget widget}) =>
@@ -17,18 +18,64 @@ class CustomDialog {
       );
 }
 
-class TextFieldBuilder extends StatelessWidget {
-  const TextFieldBuilder({super.key});
+class TextFieldDialogBuilder extends StatelessWidget {
+  const TextFieldDialogBuilder({
+    super.key,
+    this.action = true,
+    required this.onApprove,
+    required this.onCancel,
+    required this.controller,
+    this.onApproveText,
+    this.onCancelText,
+  });
+  final bool action;
+  final VoidCallback onCancel;
+  final VoidCallback onApprove;
+  final TextEditingController controller;
+  final String? onApproveText;
+  final String? onCancelText;
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
-       height:  MediaQuery.of(context).size.height * .27,
+    return Container(
+      height: MediaQuery.of(context).size.height * .27,
       width: MediaQuery.of(context).size.width * .5,
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: Colors.white,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          const Text('Title of your Workspace', style: AppTextStyle.h3Bold),
+          const SizedBox(height: 15),
+          InputField(
+            controller: controller,
+          ),
+          const SizedBox(height: 30),
+          action
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CustomeButton(
+                      text: onCancelText ?? 'No',
+                      onTap: onCancel,
+                      width: MediaQuery.of(context).size.width * .3,
+                      btnColor: AppColors.light,
+                      textStyle: AppTextStyle.h3Bold,
+                    ),
+                    CustomeButton(
+                      text: onApproveText ?? 'Yes',
+                      onTap: onApprove,
+                      width: MediaQuery.of(context).size.width * .3,
+                      textStyle: AppTextStyle.withColor(
+                          color: AppColors.light, style: AppTextStyle.h3Bold),
+                    ),
+                  ],
+                )
+              : Container(),
+        ],
       ),
     );
   }
