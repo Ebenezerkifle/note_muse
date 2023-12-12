@@ -60,8 +60,6 @@ class InputField extends StatelessWidget {
         onTap: onTap,
         validator: (value) => validator!(value),
         keyboardType: inputType ?? TextInputType.text,
-        maxLines: 5,
-        minLines: 1,
         onChanged: onchange,
         onEditingComplete: onEditingComplete,
         focusNode: focusNode,
