@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:note_muse/view/03_workspace_view/widgets/action_buttons.dart';
+import 'package:note_muse/app/routes.gr.dart';
 import 'package:note_muse/view/common/app_colors.dart';
 import 'package:note_muse/view/widgets/custome_app_bar.dart';
 import 'package:note_muse/view/widgets/icon_decore.dart';
@@ -25,15 +25,15 @@ class WorkspaceView extends StatelessWidget {
                 floating: true,
                 elevation: 0,
                 leading: IconDecore(
-                    onTap: () =>context.popRoute(),
-                    icon: FontAwesomeIcons.angleLeft,
-                  ),
+                  onTap: () => context.popRoute(),
+                  icon: FontAwesomeIcons.angleLeft,
+                ),
                 actions: [
                   IconDecore(
                     onTap: () {},
                     icon: FontAwesomeIcons.magnifyingGlass,
                   ),
-                 IconDecore(
+                  IconDecore(
                     onTap: () {},
                     icon: FontAwesomeIcons.shareNodes,
                   ),
@@ -67,7 +67,13 @@ class WorkspaceView extends StatelessWidget {
               )
             ],
           )),
-          bottomNavigationBar: const ActionButtons(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => context.pushRoute(
+          EditWorkspaceRoute(title: 'Your Workspace Title'),
+          
+        ),
+        child: const Icon(FontAwesomeIcons.penToSquare),
+      ),
     );
   }
 }
