@@ -57,7 +57,7 @@ class _SignInViewState extends ConsumerState<SignInView> {
 
 
   pushToHomePage() {
-    context.pushRoute(const HomeRoute());
+    context.router.replaceAll([const HomeRoute()]);
   }
 
   showSnackBar(String msg) {

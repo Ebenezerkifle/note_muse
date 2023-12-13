@@ -103,6 +103,7 @@ class EditingProvider extends StateNotifier<EditingState> {
   void updateNote(Note note, var quillController) {
     final json = jsonEncode(quillController.document.toDelta().toJson());
     note.content=json;
+    note.updatedTime = DateTime.now();
      String uid = _locator.userDocId;
     _service.updateWorkspace(note, uid);
   }

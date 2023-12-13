@@ -48,6 +48,8 @@ class AuthProvider extends StateNotifier<AuthState> {
     if(state.sucess){
       //fetch user data.
       String docid =_locator.userDocId;
+      print('-------------------------');
+      print(docid);
       var userInfo=await service.getUserInfo(docid);
 
       var user = UserModel.fromMap(userInfo);

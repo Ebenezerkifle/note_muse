@@ -36,10 +36,10 @@ class _HomeViewState extends ConsumerState<HomeView> {
             onCancelText: 'Cancel',
             onApprove: () {
               if (controller.text != '') {
-                context.popRoute();
                 // save a workspace on database.
                 editNotifier.creatWorkSpace(controller.text);
                 Future.delayed(Duration.zero);
+                context.popRoute();
                 context.pushRoute(
                     EditWorkspaceRoute(note: editProvider.currentNote));
                 controller.clear();

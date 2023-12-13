@@ -27,11 +27,11 @@ class Note {
   }
 
   factory Note.fromMap(Map<String, dynamic> map) {
-    var content = map['content']!=''? jsonDecode(map['content']):'';
+    //var content = map['content']!=''? jsonDecode(map['content']):'';
     return Note(
       noteId: map['noteId'] as int,
       title: map['title'] as String,
-      content: content,
+      content: map['content'],
       createdTime: DateTime.fromMillisecondsSinceEpoch(map['createdTime'] as int),
       updatedTime: DateTime.fromMillisecondsSinceEpoch(map['updatedTime'] as int),
     );
