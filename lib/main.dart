@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:note_muse/app/locator.dart';
 import 'package:note_muse/app/routes.dart';
 import 'package:note_muse/view/common/app_colors.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -14,6 +15,7 @@ void main() async {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: AppColors.primary.withOpacity(.9),
   ));
+  setupLocator();
   runApp(ProviderScope(child: MyApp()));
 }
 

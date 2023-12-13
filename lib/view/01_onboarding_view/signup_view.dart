@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:note_muse/app/routes.gr.dart';
 import 'package:note_muse/providers/auth_provider.dart';
 import 'package:note_muse/view/common/app_colors.dart';
 import 'package:note_muse/view/common/app_text_style.dart';
@@ -52,9 +53,13 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
       );
       if (valid) {
         showSnackBar("Successfully Registered!");
-
+        pushToSignInPage();
       }
     }
+  }
+
+  pushToSignInPage(){
+    context.pushRoute(const SignInRoute());
   }
 
 
@@ -108,13 +113,7 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             errorMsg[phoneNumController] =
-                                "Please enter your phone number";
-                            setState(() {});
-                            return null;
-                          } else if (value.toString().length != 10 &&
-                              value.toString().length != 13) {
-                            errorMsg[phoneNumController] =
-                                "Please enter a valid phone number";
+                                "Please enter your username";
                             setState(() {});
                             return null;
                           }
@@ -122,14 +121,14 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
                           setState(() {});
                           return null;
                         },
-                        hint: 'Phone Number',
+                        hint: 'Userame',
                         error: errorMsg.containsKey(phoneNumController),
                         onTap: () {
                           setState(() {
                             selected = FormData.phone;
                           });
                         },
-                        inputType: TextInputType.phone,
+                        inputType: TextInputType.text,
                         prefixIcon: const Icon(
                           Icons.contact_page,
                           color: AppColors.primary,

@@ -63,7 +63,7 @@ class InputField extends StatelessWidget {
         onChanged: onchange,
         onEditingComplete: onEditingComplete,
         focusNode: focusNode,
-        autofocus: true,
+        autofocus: false,
         textAlignVertical: TextAlignVertical.center,
         obscureText: hideText,
         onFieldSubmitted: onSubmit,

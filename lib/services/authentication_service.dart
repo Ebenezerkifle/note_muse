@@ -1,19 +1,21 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:note_muse/app/locator.dart';
 import 'package:note_muse/services/database_service.dart';
+import 'package:note_muse/services/state_services/user_service.dart';
 
 class Authentication {
   String error = '';
-
   // register
 
   Future<Map<String, String>> register(
-      String email, String password, String phoneNumber) async {
+      String email, String password, String username) async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
-      //todo phoneNumber should be verified on this stage.
+      //todo username should be verified on this stage.
       await DatabaseService.registerUser(
-          userCredential.user!.uid, email, phoneNumber);
+          userCredential.user!.uid, email, username);
       error = "The user is successfully registered!";
 
       return {"success": "true", "message": error};
@@ -37,9 +39,12 @@ class Authentication {
 
   // login
   Future<Map<String, String>> singin(String email, String password) async {
+    final _locator = locator<UserService>();
     try {
       await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password);
+          .signInWithEmailAndPassword(email: email, password: password)
+          .then((value) => _locator.setUserDocId(value.user!.uid));
+
       //DatabaseServices(uid: userCredential.user!.uid).updateUsersData(user);
       error = "Successfully logged in!";
       return {"success": "true", "message": error};
@@ -57,5 +62,19 @@ class Authentication {
       error = e.toString();
       return {"success": "false", "message": error};
     }
+  }
+
+  //get user info from users table
+  getUserInfo(String uid) async {
+    //Get docs from a collection reference
+    var querySnapshot = await FirebaseFirestore.instance
+        .collection("users")
+        .where('uid', isEqualTo: uid)
+        .get();
+    if (querySnapshot.docs.isNotEmpty) {
+      dynamic userData = querySnapshot.docs.first.data();
+      return userData;
+    }
+    return {};
   }
 }

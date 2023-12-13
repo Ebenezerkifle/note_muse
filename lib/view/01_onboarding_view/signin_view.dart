@@ -55,9 +55,6 @@ class _SignInViewState extends ConsumerState<SignInView> {
     //if not validated show an error
   }
 
-   onProceed() {
-      
-    }
 
   pushToHomePage() {
     context.pushRoute(const HomeRoute());

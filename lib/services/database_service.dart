@@ -7,12 +7,12 @@ class DatabaseService {
   static registerUser(
     String userId,
     String email,
-    String phoneNumber,
+    String username,
   ) {
     final _locator = locator<UserService>();
-    FirebaseFirestore.instance.collection("user").add({
+    FirebaseFirestore.instance.collection("users").add({
       "uid": userId,
-      "phoneNumber": phoneNumber,
+      "username": username,
       "email": email,
     }).then((DocumentReference doc) {
       _locator.setUserDocId(doc.id);
