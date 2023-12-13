@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "592079414983",
+    "firebase_url": "https://notemuse-3d9ab-default-rtdb.firebaseio.com",
+    "project_id": "notemuse-3d9ab",
+    "storage_bucket": "notemuse-3d9ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:592079414983:android:5dbd2dfa2b95d4f0a580e2",
+        "android_client_info": {
+          "package_name": "com.example.note_muse"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUb_mjj5z0keOMwORGASxF5FY2_qQXqEI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

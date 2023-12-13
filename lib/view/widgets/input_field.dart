@@ -24,6 +24,7 @@ class InputField extends StatelessWidget {
     this.onEditingComplete,
     this.focusNode,
     this.autoValiation = false,
+    this.onSubmit,
   });
   final double? width;
   final String hint;
@@ -42,6 +43,7 @@ class InputField extends StatelessWidget {
   final bool readOnly;
   final bool error;
   final VoidCallback? onEditingComplete;
+  final Function(dynamic)? onSubmit;
   final FocusNode? focusNode;
   final bool autoValiation;
 
@@ -64,6 +66,7 @@ class InputField extends StatelessWidget {
         autofocus: false,
         textAlignVertical: TextAlignVertical.center,
         obscureText: hideText,
+        onFieldSubmitted: onSubmit,
         style: darkText
             ? AppTextStyle.h4Normal
             : AppTextStyle.withColor(
@@ -74,7 +77,7 @@ class InputField extends StatelessWidget {
           enabled: !disabled,
           border: stroke
               ? const OutlineInputBorder(
-                  borderSide: BorderSide(width: 5, color: AppColors.primary),
+                  borderSide: BorderSide(width: 0, color: AppColors.primary),
                   borderRadius: BorderRadius.all(Radius.circular(5)))
               : InputBorder.none,
           prefixIcon: prefixIcon,
@@ -90,7 +93,7 @@ class InputField extends StatelessWidget {
           enabledBorder: stroke
               ? OutlineInputBorder(
                   borderSide: BorderSide(
-                      width: .5,
+                      width: .0,
                       color: error ? AppColors.danger : AppColors.primary),
                   borderRadius: const BorderRadius.all(Radius.circular(5)))
               : InputBorder.none,

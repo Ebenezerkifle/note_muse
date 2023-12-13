@@ -12,12 +12,14 @@ class CustomeAppBar extends StatelessWidget {
     this.bgcolor = AppColors.primary,
     this.back = true,
     this.height,
+    required this.actions,
   });
   final String title;
   final String? subtitle;
   final Color bgcolor;
   final bool back;
   final double? height;
+  final List<Widget> actions;
 
   @override
   Widget build(BuildContext context) {
@@ -31,22 +33,30 @@ class CustomeAppBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                back
-                    ? IconButton(
-                        onPressed: () => context.popRoute(),
-                        icon: const Icon(FontAwesomeIcons.angleLeft,
-                            color: AppColors.light))
-                    : const SizedBox(width: 0, height: 0),
-                back ? const SizedBox(width: 15) : const SizedBox(width: 0),
-                Text(
-                  title,
-                  style: AppTextStyle.withColor(
-                      color: AppColors.light, style: AppTextStyle.big),
-                )
-              ]),
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    back
+                        ? IconButton(
+                            onPressed: () => context.popRoute(),
+                            icon: const Icon(FontAwesomeIcons.angleLeft,
+                                color: AppColors.light))
+                        : const SizedBox(width: 0, height: 0),
+                    back ? const SizedBox(width: 15) : const SizedBox(width: 0),
+                    Text(
+                      title,
+                      style: AppTextStyle.withColor(
+                          color: AppColors.light, style: AppTextStyle.big),
+                    ),
+                  ]),
+             Row(children: actions.map((e) => e).toList()),
+            ],
+          ),
+        
         ],
       ),
     );

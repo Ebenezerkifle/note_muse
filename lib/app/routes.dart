@@ -5,8 +5,9 @@ import 'package:note_muse/app/routes.gr.dart';
 class AppRouter extends $AppRouter {
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(page: HomeRoute.page, path: '/home', initial: true),
-        AutoRoute(page: WorkspaceRoute.page, path: '/workspace'),
-        AutoRoute(page: EditWorkspaceRoute.page, path: '/editWorkspace'),
+        AutoRoute(page: SignInRoute.page,  initial: true),
+        AutoRoute(page: SignUpRoute.page),
+        AutoRoute(page: HomeRoute.page),
+        AutoRoute(page: EditWorkspaceRoute.page),
       ];
 }
