@@ -84,7 +84,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                   EditWorkspaceRoute(note: notes[index - 1])),
                               title: notes[index - 1].title,
                               imageWidget: ImageBuilder(
-                                image: 'assets/images/place_holder.jpg',
+                                image: 'assets/images/place_holder.png',
                                 height: MediaQuery.of(context).size.width * .27,
                                 width: MediaQuery.of(context).size.width * .45,
                                 fit: BoxFit.cover,
